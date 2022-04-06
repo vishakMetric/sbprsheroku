@@ -35,6 +35,7 @@ def predict():
     username = request.form.get('Username')
     print(username)
     prediction = getPercentageDisplay(username)
+    print(prediction)
     #final_sorted_list = sorted(prediction.items(), key = lambda x:x[1], reverse = True)
     #return render_template('index.html', topvalues=dict(final_sorted_list[0:5]))
     return render_template('index.html')
@@ -73,6 +74,7 @@ def getPercentageDisplay(user_input):
         list_of_text = (rating[rating['name'] == top_20_product_df.name[count]]['reviews_text_clean']).tolist()
         getPositivePercentage(list_of_text, product, top5_dict)
         list_of_text = []
+    return top5_dict
     
 
 if __name__ == "__main__":
