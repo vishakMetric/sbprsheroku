@@ -36,9 +36,8 @@ def predict():
     print(username)
     prediction = getPercentageDisplay(username)
     print(prediction)
-    #final_sorted_list = sorted(prediction.items(), key = lambda x:x[1], reverse = True)
-    #return render_template('index.html', topvalues=dict(final_sorted_list[0:5]))
-    return render_template('index.html')
+    final_sorted_list = sorted(prediction.items(), key = lambda x:x[1], reverse = True)
+    return render_template('index.html', topvalues=dict(final_sorted_list[0:5]))
 
 #Method that will give the percentage of the top 5 products selected from previous input.
 def getPositivePercentage(text_list, product, top5_dict):
