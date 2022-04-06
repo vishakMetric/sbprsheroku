@@ -33,9 +33,11 @@ def index():
 @app.route('/predict',methods=['POST'])
 def predict():
     username = request.form.get('Username')
+    print(username)
     prediction = getPercentageDisplay(username)
     final_sorted_list = sorted(prediction.items(), key = lambda x:x[1], reverse = True)
-    return render_template('index.html', topvalues=dict(final_sorted_list[0:5]))
+    #return render_template('index.html', topvalues=dict(final_sorted_list[0:5]))
+    return render_template('index.html')
 
 #Method that will give the percentage of the top 5 products selected from previous input.
 def getPositivePercentage(text_list, product, top5_dict):
