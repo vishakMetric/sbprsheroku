@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Sentiment Based Product Recommendation System</title>
+  <style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+</style>
+</head>
+
+<body>
+ <div>
+  <h1>Sentiment Based Product Recommendation System</h1>
+	
+     <!-- Define a form to take input from user -->
+	 <form action="{{ url_for('predict')}}" method="post">
+        <label for="Username">Username</label>
+        <input type="text" name="Username" required="required" />
+        <button type="submit">Predict</button>
+	</form>
+    
+   <br>
+   {% if topvalues %}
+ <table class="styled-table">
+ <tr>
+    <th>Name</th>
+    <th>Percentage</th>
+  </tr>
+ {% for key,value in topvalues.items() %}
+    <tr>
+		<td>{{key}}</td>
+		<td>{{value}}</td>
+	</tr>
+{% endfor %}
+{% endif %}
+</table>
+
+ </div>
+</body>
+</html>
