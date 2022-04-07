@@ -33,9 +33,7 @@ def index():
 @app.route('/predict',methods=['POST'])
 def predict():
     username = request.form.get('Username')
-    print(username)
     prediction = getPercentageDisplay(username)
-    print(prediction)
     final_sorted_list = sorted(prediction.items(), key = lambda x:x[1], reverse = True)
     return render_template('index.html', topvalues=dict(final_sorted_list[0:5]))
 
@@ -43,7 +41,7 @@ def predict():
 def getPositivePercentage(text_list, product, top5_dict):
     positive_pred = 0;
     negative_pred = 0;
-    print("Into method getPositivePercentage");
+   
     for i in range(len(text_list)):
         X_infer = word_vectorizer.transform([text_list[i]])
         pred = logit_sm.predict(X_infer)[0]
@@ -57,7 +55,7 @@ def getPositivePercentage(text_list, product, top5_dict):
     return top5_dict
 
 def getPercentageDisplay(user_input):
-    print("Into method getPercentageDisplay");
+    
     d = userbased.loc[user_input].sort_values(ascending=False)[0:20]
     d = pd.merge(d,recommendation,left_on='name_id',right_on='name_id',how = 'left')
     unique_user = d['name_id'].unique()
